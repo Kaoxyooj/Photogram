@@ -4,8 +4,12 @@
       .name
         Kao
     .image.center-block
-      =image_tag @post.image.url(:medium)
+      =image_tag @post.image.url(:large)
     %p.caption
       =@post.caption
-    .text-center
+    .text-center.edit-links
+      =link_to "Delete", @post, method: :delete, data: {confirm: "Are you sure?"}
+      |
+      =link_to "Edit", edit_post_path(@post)
+      |
       =link_to "Cancel", posts_path
