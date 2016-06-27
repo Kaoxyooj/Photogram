@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-	before_action :set_post, only: [:showm :edit, :update, :destroy]
+	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!
 
 	def index
 		@posts = Post.all
@@ -10,9 +11,13 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.create(post_params)
-		@post.save
-		redirect_to posts_path
+		if @post = Post.create(post_params)
+			flash[:success] = "Your post has been created!"
+			redirect_to posts_path
+		else
+			flash[:alert] = "Uh-oh, something went wrong!"
+			render :new
+		end
 	end
 
 	def show
@@ -26,15 +31,23 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 		if @post.update(post_params)
-			redirect_to :action => "show", :id => @post
+			flash[:success] = "Updated Post!"
+			redirect_to posts_path
 		else
-			render :action => "edit"
+			flash.now[:alert] = "Uh-oh, something went wrong!"
+			render :edit
 		end
 	end
 
-	def destroy
-		@post = Post.find(params[:id]).destroy
-		redirect_to :action => "index"
+	def destroy		
+		@post = Post.find(params[:id])
+		if @post.destroy
+			flash[:success] = "You have deleted a post!"
+			redirect_to :action => "index"
+		else
+			flash[:alert] = "Uh-oh, something went wrong!"
+			redirect_to :back
+		end
 	end
 
 private
