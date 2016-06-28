@@ -27,6 +27,9 @@ gem 'paperclip'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'kaminari'
+gem 'jquery-infinite-pages'
+gem 'jquery-turbolinks'
 
 
 

@@ -1,0 +1,45 @@
+/ .posts-wrapper
+/   .text-right
+/     - if @user == current_user
+/       = link_to "Edit Profile", edit_profile_path(@user.user_name)
+/   .post
+/     .post-body
+/       .image-wrap
+/         .row
+/           .col-md-12
+/             .form-group.text-center
+/               %h2.profile-user-name
+/                 = @user.user_name
+/               .img-circle
+/                 = profile_avatar_select(@user)
+/         .row
+/           .col-md-12
+/             .text-center
+/               %h4 About me:
+/             .text-center
+/               %p= @user.bio
+
+/ .user-statistics.text-center
+/   %p
+/     = pluralize @user.posts.count, "post"
+.posts-wrapper
+  .row.profile-header
+    .col-md-6
+      .img-circle
+        = profile_avatar_select(@user)
+    .col-md-6
+      .user-name-and-follow
+        %h3.profile-user-name
+          = @user.user_name
+        %span
+          - if @user == current_user
+            = link_to 'Edit Profile', edit_profile_path(@user.user_name),
+                                      class: 'btn edit-button'
+      %p.profile-bio
+        = @user.bio
+      .user-statistics
+        %p
+          = pluralize @user.posts.count, 'post'
+
+- @posts.each do |post|
+  = render 'posts/post', post: post
