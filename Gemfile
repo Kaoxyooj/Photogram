@@ -30,6 +30,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'jquery-infinite-pages'
 gem 'jquery-turbolinks'
+gem 'acts_as_votable'
 
 
 

@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
+	acts_as_votable
+
 	validates :image, presence: true
 	validates :user_id, presence: true
+	validates :caption, length: { minumim: 3, maximum: 300 }
 
 
 	belongs_to :user

@@ -147,6 +147,9 @@ body {
   .user-name, .caption-content {
     display: inline;
   }
+  #myCaption {
+    margin-top: 15px;
+  }
   #comment {
     margin-top: 7px;
     .user-name {
@@ -239,7 +242,12 @@ body {
 }
 
 #user_avatar {
-  margin: 20px auto;
+  padding: 1em;
+  margin: 0px auto;
+}
+
+#user_bio {
+  border: 1px solid gray;
 }
 
 .profile-header {
@@ -268,4 +276,10 @@ body {
 
 .profile-bio {
   margin-top: 20px;
+}
+
+.likes {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 7px;
 }

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
 	before_action :owned_post, only: [:edit, :update, :destroy]
 
 	def index
@@ -23,15 +23,12 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		@post = Post.find(params[:id])
 	end
 
 	def edit
-		@post = Post.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:id])
 		if @post.update(post_params)
 			flash[:success] = "Updated Post!"
 			redirect_to posts_path
@@ -42,13 +39,21 @@ class PostsController < ApplicationController
 	end
 
 	def destroy		
-		@post = Post.find(params[:id])
 		if @post.destroy
 			flash[:success] = "You have deleted a post!"
 			redirect_to :action => "index"
 		else
 			flash[:alert] = "Uh-oh, something went wrong!"
 			redirect_to :back
+		end
+	end
+
+	def like
+		if @post.liked_by current_user
+			respond_to do |format|
+				format.html { redirect_to :back }
+				format.js
+			end
 		end
 	end
 
