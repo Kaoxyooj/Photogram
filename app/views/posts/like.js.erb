@@ -1,1 +1,5 @@
-$("#like_<%= @post.id %>").removeClass("glyphicon-heart-empty").addClass("glyphicon-heart");
+var thumb = $("#like_<%= @post.id %>");
+thumb.removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-thumbs-down");
+thumb.attr("href", "<%= j unlike_post_path(@post.id) %>");
+thumb.attr("id", "unlike_<%= @post.id %>");
+$("#likes_<%= @post.id %>").html("<%= j (render partial: 'posts/likes', locals: { post: @post} ) %>");

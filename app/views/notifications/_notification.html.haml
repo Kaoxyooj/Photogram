@@ -1,0 +1,6 @@
+%li.notifications-all
+  = link_to "#{notification.notified_by.user_name} #{notification.notice_type}ed on your post #{time_ago_in_words notification.created_at} ago", link_through_path(notification)
+  .text-right
+    = hide_in_all(notification)
+
+

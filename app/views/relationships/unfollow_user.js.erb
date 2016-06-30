@@ -1,0 +1,6 @@
+var unfol_id = $("#unfollow-button");
+	unfol_id.removeClass("btn unfollow-button");
+	unfol_id.addClass("btn follow-button");
+	unfol_id.attr("href", "/<%= @user.user_name %>/follow_user");
+	unfol_id.attr("id", "follow-button");
+	unfol_id.text('Follow')

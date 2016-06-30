@@ -1,15 +1,33 @@
 Rails.application.routes.draw do
+  post ':user_name/follow_user', to: 'relationships#follow_user', as: :follow_user
+  post ':user_name/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
+
   get 'profiles/show'
+
+  get 'notifications', to: 'notifications#index'
+  get "notifications/:id/index", to: "notifications#index"
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
+  get 'notifications/:id/mark_as_unread', to: 'notifications#mark_as_unread', as: :mark_as_unread
+  get 'notifications/:id/mark_as_read', to: 'notifications#mark_as_read', as: :mark_as_read                                     
 
   root "posts#index"
 
   devise_for :users, :controllers => { registrations: "registrations" }
   devise_for :posts
 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
+  get "browse", to: "posts#browse", as: :browse_posts
+
   resources :posts do
     resources :comments
     member do
       get "like"
+      get "unlike"
     end
   end
 

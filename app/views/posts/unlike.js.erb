@@ -1,0 +1,5 @@
+var thumb = $("#unlike_<%= @post.id %>")
+thumb.removeClass("glyphicon glyphicon-thumbs-down").addClass("glyphicon glyphicon-thumbs-up");
+thumb.attr("href", "<%= j like_post_path(@post.id)%>");
+thumb.attr("id", "like_<%= @post.id %>");
+$("#likes_<%= @post.id %>").html("<%= j (render partial: 'posts/likes', locals: { post: @post} ) %>");
