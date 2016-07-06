@@ -19,8 +19,44 @@
       %p.profile-bio
         = @user.bio
       .user-statistics
-        %p
-          = pluralize @user.posts.count, 'post'
+        .row
+          .col-md-4
+            - if @user.posts.count < 2
+              %strong.num-font
+                = post_count(@user)
+              = "post"
+            - else
+              %strong.num-font
+                = post_count(@user)
+              = "posts"
+          .col-md-4
+            - if @user.following.count < 2
+              %strong.num-font
+                = following_count(@user)
+              = "follow"
+            - else
+              %strong.num-font
+                = following_count(@user)
+              = "follows"
+          .col-md-4
+            %strong.num-font
+              = follower_count(@user)
+            = "following"  
 
-- @posts.each do |post|
-  = render 'posts/post', post: post
+.follower-id
+  %h2.text-center
+    Who's following you
+  %h4
+    = render "follower"
+  %br
+  %hr
+
+.following-id
+  %h2.text-center
+    Who you are following
+  %h4
+    = render "following"
+  %br
+  %hr
+.user-posts
+  = render @posts

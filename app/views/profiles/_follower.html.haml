@@ -1,0 +1,3 @@
+- @user.following.each do |a|
+  %br
+    = link_to a.user_name, profile_path(a.user_name), class: "flw-hover"

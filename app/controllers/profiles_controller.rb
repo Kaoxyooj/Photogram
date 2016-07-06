@@ -7,6 +7,16 @@ class ProfilesController < ApplicationController
   		@posts = @user.posts.order('created_at DESC')
 	end 
 
+	def following
+	end
+
+	def follower
+	end
+
+	def posts
+		@posts = @user.posts.order('created_at DESC')
+	end
+
 	def edit
 	end
 

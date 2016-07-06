@@ -1,0 +1,10 @@
+.dropdown.notification-dropdown
+  = link_to current_user.user_name, profile_path(current_user.user_name)
+  %button.btn.btn-default.dropdown-toggle{ type: 'button', id: 'dropdownMenu1', data: { toggle: 'dropdown' }, 'aria-haspopup' => true, 'aria-expanded' => true }
+    %span.glyphicon.glyphicon-option-vertical
+  %ul.dropdown-menu{ 'aria-labelledby' => 'dropdownMenu1' }
+    %li.text-center
+      = link_to "My Profile", profile_path(current_user.user_name)
+      %li.divider{ role: 'separator' }
+    %li.text-center
+      = link_to "Logout", destroy_user_session_path, method: :delete

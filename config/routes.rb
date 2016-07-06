@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   post ':user_name/follow_user', to: 'relationships#follow_user', as: :follow_user
   post ':user_name/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
 
-  get 'profiles/show'
+  # get 'profiles/show'
+  get ':user_name/following', to: "profiles#following", as: :following_user
+  get ':user_name/posts', to: "profiles#posts", as: :posts_user
+  get ':user_name/follower', to: "profiles#follower", as: :follower_user
+
 
   get 'notifications', to: 'notifications#index'
   get "notifications/:id/index", to: "notifications#index"
