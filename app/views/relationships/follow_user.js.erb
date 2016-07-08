@@ -1,4 +1,5 @@
-var fol_id = $("#follow-button");
+function initialize(){
+	var fol_id = $("#follow-button");
 	fol_id.removeClass("btn follow-button");
 	fol_id.addClass("btn unfollow-button");
 	fol_id.attr("href", "/<%= @user.user_name %>/unfollow_user");
@@ -8,6 +9,10 @@ var fol_id = $("#follow-button");
 $(".flw").html("<%= j link_to @user.followers.count, '#', class: 'flw'%> ");
 $(".flwng").html("<%= j link_to @user.following.count, '#', class: 'flwng'%> ");
 $(".post_counter").html("<%= j link_to @user.posts.count, '#', class: 'post_counter'%> ");
+};
+
+$(document).ready(initialize);
+$(document).on("page:load", initialize);
 
 
 
