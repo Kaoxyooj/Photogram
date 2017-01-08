@@ -1,0 +1,10 @@
+/* These control css for small devices like phones/tablets */
+@media only screen and (max-device-width: 800px) {
+    body {    
+    }
+    .btn-lg {
+      font-size: 50px;
+      border-radius: 30px !important;
+      line-height: 4.333333 !important;
+    }
+}
